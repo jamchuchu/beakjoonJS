@@ -1,0 +1,27 @@
+const readline = require('readline');
+
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
+let input = [];
+rl.on('line', (line) => {
+    input.push(line);
+}).on('close', () => {
+    let n = Number(input[0]);
+    let values = input[1].split(' ').map(Number);
+    let m = Number(input[2]);
+
+    answer = 0;
+    values.forEach((num) => {
+        if((num * n) < m){
+            answer = num;
+            m -= num;
+            n--;
+        }else{
+            answer = Math.floor(m/n);
+        }
+    });
+    process.stdout.write(answer.toString());
+});
